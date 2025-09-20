@@ -1,0 +1,37 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Portfolio Website",
+      "description": "A modern, responsive portfolio website built with vanilla HTML, CSS, and JavaScript. Features dynamic content loading and a clean, professional design.",
+      "technologies": ["HTML", "CSS", "JavaScript", "Git"],
+      "status": "completed",
+      "featured": true,
+      "github": "https://github.com/mariospoerl/portfolio",
+      "live": "https://mariospoerl.github.io/portfolio",
+      "image": "portfolio-preview.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Task Management App",
+      "description": "A Python-based task management application with GUI using Tkinter. Features task creation, editing, and progress tracking.",
+      "technologies": ["Python", "Tkinter", "SQLite"],
+      "status": "in-progress",
+      "featured": true,
+      "github": "https://github.com/mariospoerl/task-manager",
+      "live": null,
+      "image": "task-manager-preview.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Simple Calculator",
+      "description": "A basic calculator application built in C++ to practice fundamental programming concepts and user interface design.",
+      "technologies": ["C++", "Qt"],
+      "status": "completed",
+      "featured": false,
+      "github": "https://github.com/mariospoerl/cpp-calculator",
+      "live": null,
+      "image": "calculator-preview.jpg"
+    }
+  ]
+}
