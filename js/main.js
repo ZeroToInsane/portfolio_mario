@@ -90,7 +90,7 @@ function displayErrorMessage() {
     `;
 }
 
-// Initialize smooth scrolling navigation
+// Initialize smooth scrolling navigation with offset
 function initializeNavigation() {
     const navLinks = document.querySelectorAll('.nav-links a');
 
@@ -102,9 +102,13 @@ function initializeNavigation() {
             const targetSection = document.getElementById(targetId);
 
             if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                // Calculate offset for fixed header
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight - 20; // 20px extra padding
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
