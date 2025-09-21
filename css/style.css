@@ -629,8 +629,69 @@ footer {
     color: var(--primary-color);
 }
 
+/* Mobile Menu */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--light-text);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Mobile Menu Animations */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--dark-bg);
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        padding-top: 2rem;
+        transition: right 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
+
     .contact-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -651,7 +712,11 @@ footer {
         text-align: center;
     }
 
-    .nav-links {
-        display: none; /* TODO: Add mobile menu */
+    #hero h1 {
+        font-size: 2rem;
+    }
+
+    section {
+        padding: 3rem 0;
     }
 }

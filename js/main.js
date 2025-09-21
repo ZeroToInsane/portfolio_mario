@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavigation();
     initializeContactForm();
     initializeFormValidation();
+    initializeMobileMenu()
 });
 
 // Load projects from JSON file
@@ -466,4 +467,34 @@ function validateField(field) {
     }
 
     return isValid;
+}
+
+// Mobile menu functionality
+function initializeMobileMenu() {
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileToggle && navLinks) {
+        mobileToggle.addEventListener('click', function() {
+            mobileToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const menuLinks = navLinks.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                mobileToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    }
 }
