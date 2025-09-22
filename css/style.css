@@ -158,19 +158,28 @@ section {
     justify-content: center;
 }
 
-.image-placeholder {
+/* Profile Image */
+.profile-image {
     width: 250px;
     height: 300px;
-    background-color: var(--secondary-color);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gray-text);
-    border: 2px dashed var(--accent-color);
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Projects Section */
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+}
+
+.about-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Projects Section */
 #projects {
     background-color: var(--dark-bg);
