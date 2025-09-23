@@ -128,14 +128,14 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Blog functionality
+// Blog functionality with Markdown support
 let allBlogPosts = [];
 let filteredBlogPosts = [];
 
-// Load blog posts from JSON file
+// Load blog posts from JSON index
 async function loadBlogPosts() {
     try {
-        const response = await fetch('data/blog-posts.json');
+        const response = await fetch('data/blog-index.json');
         const data = await response.json();
         allBlogPosts = data.posts;
         filteredBlogPosts = [...allBlogPosts];
@@ -205,14 +205,100 @@ function createBlogCard(post) {
         </div>
     `;
 
-    // Add click event for future blog post detail view
+    // Add click event to open blog post
     card.addEventListener('click', () => {
-        console.log(`Opening blog post: ${post.title}`);
-        // Future: Open blog post detail view
+        openBlogPost(post.slug);
     });
 
     return card;
 }
+
+// Open blog post in modal
+async function openBlogPost(slug) {
+    try {
+        // Create modal if it doesn't exist
+        let modal = document.querySelector('.blog-modal');
+        if (!modal) {
+            modal = createBlogModal();
+            document.body.appendChild(modal);
+        }
+
+        // Show loading
+        const modalContent = modal.querySelector('.blog-modal-content');
+        modalContent.innerHTML = `
+            <button class="blog-close">&times;</button>
+            <div class="blog-content">
+                <p>Loading blog post...</p>
+            </div>
+        `;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Load markdown file
+        const response = await fetch(`blog/${slug}.md`);
+        if (!response.ok) {
+            throw new Error('Blog post not found');
+        }
+
+        const markdown = await response.text();
+        const html = MarkdownParser.parse(markdown);
+
+        // Display content
+        modalContent.innerHTML = `
+            <button class="blog-close">&times;</button>
+            <div class="blog-content">
+                ${html}
+            </div>
+        `;
+
+        // Add close functionality
+        const closeBtn = modal.querySelector('.blog-close');
+        closeBtn.addEventListener('click', closeBlogModal);
+
+    } catch (error) {
+        console.error('Error loading blog post:', error);
+        alert('Sorry, this blog post could not be loaded.');
+    }
+}
+
+// Create blog modal
+function createBlogModal() {
+    const modal = document.createElement('div');
+    modal.className = 'blog-modal';
+
+    modal.innerHTML = `
+        <div class="blog-modal-content">
+            <button class="blog-close">&times;</button>
+            <div class="blog-content"></div>
+        </div>
+    `;
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeBlogModal();
+        }
+    });
+
+    return modal;
+}
+
+// Close blog modal
+function closeBlogModal() {
+    const modal = document.querySelector('.blog-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeBlogModal();
+    }
+});
 
 // Initialize blog search and filter controls
 function initializeBlogControls() {

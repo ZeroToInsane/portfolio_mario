@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "slug": "my-journey-to-software-development",
+      "title": "My Journey to Software Development",
+      "excerpt": "How I discovered my passion for coding and what I've learned on my path to becoming a developer.",
+      "date": "2024-12-15",
+      "category": "thoughts",
+      "tags": ["career", "programming", "journey"],
+      "readTime": "5 min read",
+      "featured": true,
+      "image": null
+    }
+  ]
+}
