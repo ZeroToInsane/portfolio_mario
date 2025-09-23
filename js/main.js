@@ -236,7 +236,7 @@ async function openBlogPost(slug) {
         document.body.style.overflow = 'hidden';
 
         // Load markdown file
-        const response = await fetch(`blog/${slug}.md`);
+        const response = await fetch(`./blog/${slug}.md`);
         if (!response.ok) {
             throw new Error('Blog post not found');
         }
