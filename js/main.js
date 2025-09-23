@@ -502,3 +502,54 @@ function initializeMobileMenu() {
         });
     }
 }
+
+// Create individual project card
+function createProjectCard(project) {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+
+    // Create status badge
+    const statusClass = project.status === 'completed' ? 'status-completed' : 'status-in-progress';
+    const statusText = project.status === 'completed' ? 'Completed' : 'In Progress';
+
+    // Create technology tags
+    const techTags = project.technologies.map(tech =>
+        `<span class="tech-tag">${tech}</span>`
+    ).join('');
+
+    // Create links
+    let linksHTML = '';
+    if (project.github) {
+        linksHTML += `<a href="${project.github}" class="project-link github-link" target="_blank">GitHub</a>`;
+    }
+    if (project.live) {
+        linksHTML += `<a href="${project.live}" class="project-link live-link" target="_blank">Live Demo</a>`;
+    }
+
+    // Create image or fallback
+    let imageHTML = '';
+    if (project.image && project.image !== 'portfolio-preview.jpg') {
+        imageHTML = `<img src="images/${project.image}" alt="${project.title} Screenshot" class="project-image">`;
+    } else {
+        imageHTML = `<div class="project-no-image">📱 ${project.title}</div>`;
+    }
+
+    card.innerHTML = `
+        ${imageHTML}
+        <div class="project-content">
+            <div class="project-header">
+                <h3 class="project-title">${project.title}</h3>
+            </div>
+            <span class="project-status ${statusClass}">${statusText}</span>
+            <p class="project-description">${project.description}</p>
+            <div class="project-technologies">
+                ${techTags}
+            </div>
+            <div class="project-links">
+                ${linksHTML}
+            </div>
+        </div>
+    `;
+
+    return card;
+}
