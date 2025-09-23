@@ -1,6 +1,6 @@
 # My Journey to Software Development
 
-*Published: December 15, 2024*
+*Published: September 23, 2025*
 
 ## How It All Started
 
@@ -13,8 +13,9 @@ Starting with **Python**, I was amazed by how readable and powerful the language
 #### Languages I've Explored:
 
 - **Python** - My first love, perfect for rapid prototyping
+- **Java** - Great for learning Object-Oriented Programming
 - **C++** - Teaching me about performance and memory management
-- **C#** - Bridging the gap between simplicity and power
+- **C#** - Powerful language for company level development 
 - **JavaScript** - Opening the door to web development
 
 ## Current Focus: Web Development
